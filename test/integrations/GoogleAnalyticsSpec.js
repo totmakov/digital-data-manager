@@ -128,7 +128,7 @@ describe('Integrations: GoogleAnalytics', () => {
 
     describe('loading', () => {
       it('should load', (done) => {
-        sinon.stub(ga, 'load', () => {
+        sinon.stub(ga, 'load').callsFake(() => {
           window.gaplugins = {};
           ga.onLoad();
         });
