@@ -2,6 +2,7 @@
 <script type="text/javascript">
 // window.DDMANAGER_INIT_URL = '<YOUR_BACKUP_STABLE_INITIALIZATION_SCRIPT_URL>';
 // window.DDMANAGER_SDK_URL = '<YOUR_BACKUP_STABLE_SDK_SCRIPT_URL>';
+// window.DDMANAGER_TESTMODE_INIT_URL = '<DEVELOPMENT_TESTMODE_INIT_URL>';
 
 (function(a, domain) {
     domain = domain || 'cdn.ddmanager.ru';
@@ -54,9 +55,8 @@
               } catch (e) {}
             }
             if (testMode) {
-              b.load('https://api.ddmanager.ru/v1/ddm-initialization/' + a + '.js');
-            } else if (window.DDMANAGER_INIT_URL) {
-              b.load(window.DDMANAGER_INIT_URL);
+              b.load(window.DDMANAGER_TESTMODE_INIT_URL
+                || 'https://api.ddmanager.ru/v1/ddm-initialization/' + a + '.js');
             } else {
               b.load('https://' + domain + '/ddm-initialization/' + a + '.js');
             }
