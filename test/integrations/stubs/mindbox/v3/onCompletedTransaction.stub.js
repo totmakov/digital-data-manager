@@ -54,56 +54,58 @@ onCompletedTransactionTransactionSkuStub.lineItems[1].product.skuCode = 'sku234'
 function getCheckoutObjectStub() {
   return {
     operation: 'CompletedOrder',
-    executionDateTimeUtc: sinon.match.any,
-    customer: {
-      ids: {
-        bitrixId: 'user123',
-      },
-      email: 'test@driveback.ru',
-      mobilePhone: '+70000000000',
-    },
-    order: {
-      deliveryCost: onCompletedTransactionTransactionStub.shippingCost,
-      totalPrice: onCompletedTransactionTransactionStub.total,
-
-      lines: [
-        {
-          product: {
-            ids: {
-              bitrixId: 'product123',
-            },
-          },
-          quantity: 1,
-          basePricePerItem: 100,
-        },
-        {
-          product: {
-            ids: {
-              bitrixId: 'product567',
-            },
-          },
-          quantity: 2,
-          basePricePerItem: 150,
-        },
-      ],
-
-      payments: [
-        {
-          type: onCompletedTransactionTransactionStub.paymentMethod,
-          amount: onCompletedTransactionTransactionStub.total,
-        },
-      ],
-      area: {
+    data: {
+      executionDateTimeUtc: sinon.match.any,
+      customer: {
         ids: {
-          externalId: 'region123',
+          bitrixId: 'user123',
         },
+        email: 'test@driveback.ru',
+        mobilePhone: '+70000000000',
       },
-      ids: {
-        bitrixId: onCompletedTransactionTransactionStub.orderId,
-        sapId: onCompletedTransactionTransactionStub.sapOrderId,
-      },
-      customFields: {
-        oneMoreField: 'test',
+      order: {
+        deliveryCost: onCompletedTransactionTransactionStub.shippingCost,
+        totalPrice: onCompletedTransactionTransactionStub.total,
+
+        lines: [
+          {
+            product: {
+              ids: {
+                bitrixId: 'product123',
+              },
+            },
+            quantity: 1,
+            basePricePerItem: 100,
+          },
+          {
+            product: {
+              ids: {
+                bitrixId: 'product567',
+              },
+            },
+            quantity: 2,
+            basePricePerItem: 150,
+          },
+        ],
+
+        payments: [
+          {
+            type: onCompletedTransactionTransactionStub.paymentMethod,
+            amount: onCompletedTransactionTransactionStub.total,
+          },
+        ],
+        area: {
+          ids: {
+            externalId: 'region123',
+          },
+        },
+        ids: {
+          bitrixId: onCompletedTransactionTransactionStub.orderId,
+          sapId: onCompletedTransactionTransactionStub.sapOrderId,
+        },
+        customFields: {
+          oneMoreField: 'test',
+        },
       },
     },
   };
@@ -113,22 +115,21 @@ function getCheckoutObjectStub() {
 const onCompletedTransactionCheckoutOperationStub = getCheckoutObjectStub();
 
 const onCompletedTransactionCheckoutOperationVoucherStub = getCheckoutObjectStub();
-//onCompletedTransactionCheckoutOperationVoucherStub.executionDateTimeUtc = sinon.match.any;
 
 const onCompletedTransactionCheckoutCustomOperationStub = getCheckoutObjectStub();
 onCompletedTransactionCheckoutCustomOperationStub.operation = 'CompletedOrderCustom';
-onCompletedTransactionCheckoutCustomOperationStub.order.lines[0].product.sku = {
+onCompletedTransactionCheckoutCustomOperationStub.data.order.lines[0].product.sku = {
   ids: {
     bitrixId: 'sku123',
   },
 };
-onCompletedTransactionCheckoutCustomOperationStub.order.lines[1].product.sku = {
+onCompletedTransactionCheckoutCustomOperationStub.data.order.lines[1].product.sku = {
   ids: {
     bitrixId: 'sku234',
   },
 };
-onCompletedTransactionCheckoutCustomOperationStub.customer = {
-  ids: onCompletedTransactionCheckoutOperationStub.customer.ids,
+onCompletedTransactionCheckoutCustomOperationStub.data.customer = {
+  ids: onCompletedTransactionCheckoutOperationStub.data.customer.ids,
 };
 
 export {
